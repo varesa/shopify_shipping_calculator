@@ -1,6 +1,6 @@
 [submodule "pyactiveresource"]
 	path = pyactiveresource
-	url = /var/www/shipping/pyactiveresource/
+	url = git@github.com:varesa/pyactiveresource.git
 [submodule "shopify_python_api"]
 	path = shopify_python_api
-	url = /var/www/shipping/shopify_python_api/
+	url = git@github.com:varesa/shopify_python_api.git
