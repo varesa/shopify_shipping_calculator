@@ -22,5 +22,6 @@ def main(global_config, **settings):
     config.add_route('admin', '/admin')
     config.add_route('proxy', '/proxy')
     config.add_route('setup', '/setup')
+    config.add_route('setup-addservice', "/setup/addservice")
     config.scan()
     return config.make_wsgi_app()

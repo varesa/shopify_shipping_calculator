@@ -21,6 +21,9 @@ def my_view(request):
 def view_setup(request):
     return {}
 
+@view_config(route_name='setup-addservice', renderer='templates/generic_text.pt')
+def view_setup_addservice(request):
+    return {'text': "Service added."}
 
 conn_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
