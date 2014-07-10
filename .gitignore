@@ -2,3 +2,5 @@
 */__pycache__
 shipping.egg-info
 shipping.sqlite
+auth_apikey
+auth_password
