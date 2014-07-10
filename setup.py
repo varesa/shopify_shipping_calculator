@@ -17,6 +17,8 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'ShopifyAPI',
+    'pyactiveresource'
     ]
 
 setup(name='shipping',
