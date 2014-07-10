@@ -1,0 +1,6 @@
+[submodule "pyactiveresource"]
+	path = pyactiveresource
+	url = /var/www/shipping/pyactiveresource/
+[submodule "shopify_python_api"]
+	path = shopify_python_api
+	url = /var/www/shipping/shopify_python_api/
