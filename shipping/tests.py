@@ -13,7 +13,6 @@ class TestMyViewSuccessCondition(unittest.TestCase):
         engine = create_engine('sqlite://')
         from .models import (
             Base,
-            MyModel,
             )
         DBSession.configure(bind=engine)
         Base.metadata.create_all(engine)
@@ -40,7 +39,6 @@ class TestMyViewFailureCondition(unittest.TestCase):
         engine = create_engine('sqlite://')
         from .models import (
             Base,
-            MyModel,
             )
         DBSession.configure(bind=engine)
 
