@@ -9,12 +9,16 @@
     <h3>CarrierServices defined:</h3>
     <table>
         <tr>
-            <th>id</th><th>name</th>
+            <th>id&nbsp;&nbsp;&nbsp;</th><th>name&nbsp;&nbsp;&nbsp;</th><th>callback&nbsp;&nbsp;&nbsp;</th>
         </tr>
         <tr tal:repeat="service services">
-            <td>${service.id}</td><td>${service.name}</td>
+            <td>${service.id}&nbsp;&nbsp;&nbsp;</td>
+            <td>${service.name}&nbsp;&nbsp;&nbsp;</td>
+            <td>${service.callback_url}&nbsp;&nbsp;&nbsp;</td>
         </tr>
     </table>
+
+    <br><br>
 
     <button onclick="document.location.href='/setup/addservice'">Register</button>
     </body>
