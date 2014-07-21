@@ -15,6 +15,10 @@ from shopify import CarrierService
 def my_view(request):
     return {'one': "abc", 'project': 'shipping'}
 
+@view_config(route_name='callback')
+def view_callback(request):
+    return Response('')
+
 @view_config(route_name='setup', renderer='templates/setup.pt')
 def view_setup(request):
     create_session()
@@ -28,5 +32,3 @@ def view_setup_addservice(request):
     c = CarrierService()
     c._format = "json"
     return {'text': "Service added."}
-
-
