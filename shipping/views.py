@@ -17,7 +17,7 @@ def my_view(request):
 
 @view_config(route_name='callback')
 def view_callback(request):
-    print(request.POST)
+    print(request.json_body)
     return Response('')
 
 @view_config(route_name='setup', renderer='templates/setup.pt')
