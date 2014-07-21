@@ -29,6 +29,12 @@ def view_setup(request):
 
 @view_config(route_name='setup-addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
+    create_session()
+
     c = CarrierService()
-    c._format = "json"
+    c.name = "Test"
+    c.callback_url = "http://finbit.dy.fi:6545/callback"
+    c.format = "json"
+    c.service_discovery = True
+    c.save()
     return {'text': "Service added."}
