@@ -5,5 +5,17 @@
     </head>
     <body>
 	<h2>Setup</h2>
+
+    <h3>CarrierServices defined:</h3>
+    <table>
+        <tr>
+            <th>id</th><th>name</th>
+        </tr>
+        <tr tal:repeat="service services">
+            <td>${service.id}</td><td>${service.name}</td>
+        </tr>
+    </table>
+
+    <button onclick="document.location.href='/setup/addservice'">Register</button>
     </body>
 </html>

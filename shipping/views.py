@@ -22,10 +22,8 @@ def view_callback(request):
 @view_config(route_name='setup', renderer='templates/setup.pt')
 def view_setup(request):
     create_session()
-
     services = CarrierService.find()
-    print(services)
-    return {}
+    return {'services': services}
 
 @view_config(route_name='setup-addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
