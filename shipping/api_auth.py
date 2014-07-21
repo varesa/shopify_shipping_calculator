@@ -7,18 +7,22 @@ def get_api_key():
     apikey = ""
     with open(os.path.join(path, "auth_apikey"), 'r', encoding="utf-8") as file_apikey:
         apikey = file_apikey.readline()
+
+    print("APIKEY: " + apikey)
     return apikey
 
 def get_password():
     password = ""
     with open(os.path.join(path, "auth_password"), 'r', encoding="utf-8") as file_password:
         password = file_password.readline()
+    print("PASS: " + password)
     return password
 
 def get_shopname():
     shopname = ""
     with open(os.path.join(path, "shopname"), 'r', encoding="utf-8") as file_shopname:
         shopname = file_shopname.readline()
+    print("NAME: " + shopname)
     return shopname
 
 def create_session():

@@ -25,6 +25,8 @@ def view_setup(request):
 
 @view_config(route_name='setup-addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
+    c = CarrierService()
+    c._format = "json"
     return {'text': "Service added."}
 
 
