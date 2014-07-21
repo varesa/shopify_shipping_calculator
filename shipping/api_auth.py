@@ -6,7 +6,7 @@ path = os.path.join("shipping", "config")
 def get_api_key():
     apikey = ""
     with open(os.path.join(path, "auth_apikey"), 'r', encoding="utf-8") as file_apikey:
-        apikey = file_apikey.readline()
+        apikey = file_apikey.readline().strip()
 
     print("APIKEY: " + apikey)
     return apikey
@@ -14,14 +14,14 @@ def get_api_key():
 def get_password():
     password = ""
     with open(os.path.join(path, "auth_password"), 'r', encoding="utf-8") as file_password:
-        password = file_password.readline()
+        password = file_password.readline().strip()
     print("PASS: " + password)
     return password
 
 def get_shopname():
     shopname = ""
     with open(os.path.join(path, "shopname"), 'r', encoding="utf-8") as file_shopname:
-        shopname = file_shopname.readline()
+        shopname = file_shopname.readline().strip()
     print("NAME: " + shopname)
     return shopname
 
