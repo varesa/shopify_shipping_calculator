@@ -10,8 +10,8 @@ def calculate_shipping(requestjson):
     :rtype: int
     """
     data = json.loads(requestjson)
-    items = data['rates']['items']
-    destination = data['rates']['destination']
+    items = data['rate']['items']
+    destination = data['rate']['destination']
 
     for item in items:
         print(item)
