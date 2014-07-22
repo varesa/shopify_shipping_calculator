@@ -5,6 +5,8 @@ import json
 
 from math import ceil
 
+from .exceptions import InvalidLocationException
+
 baseurl = "http://maps.googleapis.com/maps/api/distancematrix/json?"
 
 
@@ -45,4 +47,7 @@ def get_distance(origin, destination):
     response_json = urlopen(request_url).read().decode('utf-8')
     response = json.loads(response_json)
 
-    return ceil(int(response['rows']['elements']['distance']['value'])/1000.0)
+    if response['rows'][0]['elements'][0]['status'] != 'OK':
+        raise InvalidLocationException
+
+    return ceil(int(response['rows'][0]['elements'][0]['distance'][0]['value'])/1000.0)
