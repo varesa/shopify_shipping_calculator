@@ -19,6 +19,7 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 class QuoteRequest(Base):
+    __tablename__ = 'requests'
     uuid = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
