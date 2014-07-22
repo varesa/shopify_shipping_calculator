@@ -4,9 +4,9 @@
         <br><br>
         <table>
             <tr tal:repeat="request requests">
-                <td>${request.uuid}&nbsp;&nbsp;&nbsp;<br></td>
-                <td>${request.date}&nbsp;&nbsp;&nbsp;<br></td>
-                <td>${request.json}&nbsp;&nbsp;&nbsp;<br></td>
+                <td>${request.uuid}&nbsp;&nbsp;&nbsp;<br><br></td>
+                <td>${request.date}&nbsp;&nbsp;&nbsp;<br><br></td>
+                <td>${request.json}&nbsp;&nbsp;&nbsp;<br><br></td>
             </tr>
         </table>
     </metal:slot>
