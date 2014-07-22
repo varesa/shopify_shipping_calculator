@@ -1,9 +1,11 @@
 <metal:main metal:use-macro="load: master.pt">
     <metal:slot metal:fill-slot="content">
         <div class="container">
-            <h2>Details for request #${request.id}</h2>
+            <h2>Details for request #${request.uuid}</h2>
+            <p>Date: ${request.date}</p>
             <br>
             <br>
+            <pre>${request.json}</pre>
         </div>
     </metal:slot>
 </metal:main>

@@ -55,6 +55,8 @@ def view_requests(request):
 
 
 def prettify_json(data):
+    if type(data) == type(b''):
+        data = data.decode('utf-8')
     expanded = json.loads(data)
     return json.dumps(expanded, indent=4, separators=(',', ': '))
 
@@ -62,6 +64,6 @@ def prettify_json(data):
 @view_config(route_name='request_details', renderer='templates/request_details.pt')
 def view_request_details(request):
     id = request.matchdict['id']
-    req = DBSession.query(QuoteRequest).filter_by(id=id).first()
+    req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
     req.json = prettify_json(req.json)
     return {'request': req}
