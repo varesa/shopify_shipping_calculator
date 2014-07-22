@@ -22,7 +22,7 @@ def my_view(request):
 def view_callback(request):
     q = QuoteRequest()
     q.date = datetime.now()
-    q.json = request.json_body
+    q.json = request.body
     DBSession.add(q)
 
     return Response('')
