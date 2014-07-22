@@ -43,4 +43,5 @@ def view_setup_addservice(request):
     c.format = "json"
     c.service_discovery = True
     c.save()
-    return {'text': "Service added."}
+
+    return {'header': "Service added", 'text': "<a href='/'>Return</a>"}

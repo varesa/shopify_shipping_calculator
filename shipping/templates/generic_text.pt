@@ -4,6 +4,8 @@
 
     </head>
     <body>
-	<h2>${text}</h2>
+	<h2 tal:condition="exists: header">${header}</h2>
+    <br><br>
+    <div tal:condition="exists: content">${structure: content}</div>
     </body>
 </html>
