@@ -34,5 +34,6 @@ def main(global_config, **settings):
 
     config.add_route('requests', '/requests')
     config.add_route('request_details', '/requests/{id}')
+    config.add_route('request_test', '/requests/{id}/test')
     config.scan()
     return config.make_wsgi_app()

@@ -1,0 +1,9 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="content">
+        <div class="container">
+            <h2>Vastaus kyselyyn:</h2>
+            <br><br>
+            <pre>${result}</pre>
+        </div>
+    </metal:main>
+</metal:main>

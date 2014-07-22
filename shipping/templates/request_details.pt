@@ -4,6 +4,8 @@
             <h2>Details for request #${request.uuid}</h2>
             <p>Date: ${request.date}</p>
             <br>
+            <a href="/requests/${request.uuid}/test">Test</a>
+            <br>
             <br>
             <pre>${request.json}</pre>
         </div>
