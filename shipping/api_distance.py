@@ -50,4 +50,4 @@ def get_distance(origin, destination):
     if response['rows'][0]['elements'][0]['status'] != 'OK':
         raise InvalidLocationException
 
-    return ceil(int(response['rows'][0]['elements'][0]['distance'][0]['value'])/1000.0)
+    return ceil(int(response['rows'][0]['elements'][0]['distance']['value'])/1000.0)
