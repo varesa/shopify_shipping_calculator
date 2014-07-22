@@ -5,6 +5,7 @@
         <div class="container">
            <h2>Toiminnot:</h2><br><br>
            <a href="/setup">Rekisteröi shopify-alustaan</a><br>
+           <a href="/requests">Näytä shopifylta tulleet pyynnöt</a>
         </div>
     </metal:main>
 </metal:main>
