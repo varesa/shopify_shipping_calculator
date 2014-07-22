@@ -15,9 +15,13 @@ from .api_auth import create_session
 
 from .cost_calculation import calculate_shipping
 
+from .utils import prettify_json
+
+
 @view_config(route_name='home', renderer='templates/main.pt')
 def my_view(request):
     return {'one': "abc", 'project': 'shipping'}
+
 
 @view_config(route_name='callback')
 def view_callback(request, save=True):
@@ -72,19 +76,13 @@ def view_requests(request):
     return {'requests': requests}
 
 
-def prettify_json(data):
-    if type(data) == type(b''):
-        data = data.decode('utf-8')
-    expanded = json.loads(data)
-    return json.dumps(expanded, indent=4, separators=(',', ': '))
-
-
 @view_config(route_name='request_details', renderer='templates/request_details.pt')
 def view_request_details(request):
     id = request.matchdict['id']
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
     req.json = prettify_json(req.json)
     return {'request': req}
+
 
 @view_config(route_name='request_test', renderer='templates/request_test.pt')
 def view_request_test(request):
