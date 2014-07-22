@@ -19,12 +19,24 @@ from .utils import prettify_json
 
 
 @view_config(route_name='home', renderer='templates/main.pt')
-def my_view(request):
-    return {'one': "abc", 'project': 'shipping'}
+def view_main(request):
+    """
+    View method for the navigational frontpage
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
+    return {}
 
 
 @view_config(route_name='callback')
 def view_callback(request, save=True):
+    """
+    View method for the shopify rates callback
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     if save:
         q = QuoteRequest()
         q.date = datetime.now()
@@ -53,6 +65,12 @@ def view_callback(request, save=True):
 
 @view_config(route_name='setup', renderer='templates/setup.pt')
 def view_setup(request):
+    """
+    View method for the setup page, shows registered CarrierServices
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     create_session()
     services = CarrierService.find()
     return {'services': services}
@@ -60,6 +78,12 @@ def view_setup(request):
 
 @view_config(route_name='setup_addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
+    """
+    View method for a page for registering a new CarrierService
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     create_session()
 
     c = CarrierService()
@@ -74,12 +98,24 @@ def view_setup_addservice(request):
 
 @view_config(route_name='requests', renderer='templates/requests.pt')
 def view_requests(request):
+    """
+    View method for viewing the saved requests from shopify
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     requests = DBSession.query(QuoteRequest).all()
     return {'requests': requests}
 
 
 @view_config(route_name='request_details', renderer='templates/request_details.pt')
 def view_request_details(request):
+    """
+    View method for viewing the detailed data contained in a saved request
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     id = request.matchdict['id']
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
     req.json = prettify_json(req.json)
@@ -88,6 +124,12 @@ def view_request_details(request):
 
 @view_config(route_name='request_test', renderer='templates/request_test.pt')
 def view_request_test(request):
+    """
+    View method to test the calculation using a saved request. Calls view_callback
+    :param request: HTTP Request object
+    :type request: pyramid.request.Request
+    :return: Dictionary of values to be used in the template
+    """
     id = request.matchdict['id']
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
 
