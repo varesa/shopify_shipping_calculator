@@ -43,9 +43,13 @@ def get_distance(origin, destination):
     origin_url = url_from_json(origin)
     dest_url = url_from_json(destination)
 
+    print("Requesting distance")
+
     request_url = baseurl + "origins=" + origin_url + "&destinations=" + dest_url
     response_json = urlopen(request_url).read().decode('utf-8')
     response = json.loads(response_json)
+
+    print("Distance received")
 
     if response['rows'][0]['elements'][0]['status'] != 'OK':
         raise InvalidLocationException
