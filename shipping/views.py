@@ -26,7 +26,22 @@ def view_callback(request):
     q.json = request.body
     DBSession.add(q)
 
-    return Response('')
+    responsedata = json.dumps(
+        {
+            'rates': [
+                {
+                    "service_name": 'TestShipping',
+                    "service_code": 'tst',
+                    "total_price":  '192',
+                    "currency":     "EUR",
+                    "min_delivery_date": "2013-10-25 14:48:45 +0200",
+                    "max_delivery_date": "2013-10-25 14:48:45 +0200"
+                }
+            ]
+        }
+    )
+
+    return Response(responsedata)
 
 @view_config(route_name='setup', renderer='templates/setup.pt')
 def view_setup(request):
