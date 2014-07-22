@@ -14,7 +14,7 @@ from .api_auth import create_session
 
 from shopify import CarrierService
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
+@view_config(route_name='home', renderer='templates/main.pt')
 def my_view(request):
     return {'one': "abc", 'project': 'shipping'}
 

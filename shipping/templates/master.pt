@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:metal="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
     <head>
-        <title><metal:content metal:define-slot="title"></metal:content></title>
+        <title><metal:slot metal:define-slot="title"></metal:slot></title>
         <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
         <script type="text/javascript" src="/static/js/bootstrap.js"></script>
         <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
-        <metal:content metal:define-slot="custom_head"></metal:content>
+        <metal:slot metal:define-slot="custom_head"></metal:slot>
     </head>
     <body>
-        <metal:content metal:define-slot="content"></metal:content>
+        <metal:slot metal:define-slot="content"></metal:slot>
     </body>
 </html>
