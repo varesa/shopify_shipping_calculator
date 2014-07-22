@@ -45,3 +45,8 @@ def view_setup_addservice(request):
     c.save()
 
     return {'header': "Service added", 'text': "<a href='/'>Return</a>"}
+
+@view_config(route_name='requests', renderer='templates/requests.pt')
+def view_requests(request):
+    requests = DBSession.query(QuoteRequest).all()
+    return {'requests': requests}

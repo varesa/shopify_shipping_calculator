@@ -1,0 +1,13 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:slot metal:fill-slot="content">
+        <h2>Requests from shopify:</h2>
+        <br><br>
+        <table>
+            <tr tal:repeat="request requests">
+                <td>${request.uuid}</td>
+                <td>${request.date}</td>
+                <td>${request.json}</td>
+            </tr>
+        </table>
+    </metal:slot>
+</metal:main>
