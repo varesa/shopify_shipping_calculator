@@ -1,9 +1,10 @@
 import json
-
-test_origin = "Villähde, Finland"
+from math import ceil
 
 from shopify import Product
 from .api_auth import create_session
+
+test_origin = "Villähde, Finland"
 
 def calculate_shipping(requestjson):
     """
@@ -18,6 +19,18 @@ def calculate_shipping(requestjson):
 
     create_session()
 
+    bags = {}
+    bag_loads = []
+
     for item in items:
         prod = Product.find(item['product_id'])
-        print(prod)
+
+        if "suursäkki-1000l" in prod.tags:
+            if test_origin not in bags.keys():
+                bags[test_origin] = 0
+            bags[test_origin] += item['quantity']
+
+        for location, quantity in bags.items():
+            bag_loads.append( (location, ceil(quantity/18)) )
+
+    print(bag_loads)
