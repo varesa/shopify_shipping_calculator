@@ -5,16 +5,15 @@ from pyramid.view import view_config
 from datetime import datetime
 import json
 
-from sqlalchemy.exc import DBAPIError
-
 from .models import (
     DBSession,
     QuoteRequest
-    )
-
-from .api_auth import create_session
+)
 
 from shopify import CarrierService
+from .api_auth import create_session
+
+from .cost_calculation import calculate_shipping
 
 @view_config(route_name='home', renderer='templates/main.pt')
 def my_view(request):
@@ -26,6 +25,8 @@ def view_callback(request):
     q.date = datetime.now()
     q.json = request.body
     DBSession.add(q)
+
+    calculate_shipping(request.body)
 
     responsedata = json.dumps(
         {
