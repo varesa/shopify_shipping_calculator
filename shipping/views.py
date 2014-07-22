@@ -32,8 +32,8 @@ def view_callback(request):
                 {
                     "service_name": 'TestShipping',
                     "service_code": 'tst',
-                    "total_price":  '192',
-                    "currency":     "EUR",
+                    "total_price":  '15000',
+                    "currency": "EUR",
                     "min_delivery_date": "2013-10-25 14:48:45 +0200",
                     "max_delivery_date": "2013-10-25 14:48:45 +0200"
                 }
