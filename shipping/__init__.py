@@ -6,10 +6,15 @@ from .models import (
     Base,
     )
 
+from .config_manager import initialize_configs
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+
+    # Check config files, stops application if invalid
+    initialize_configs()
+
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
