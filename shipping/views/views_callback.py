@@ -23,7 +23,13 @@ def view_callback(request, save=True):
         q.json = request.body
         DBSession.add(q)
 
-    calculate_shipping(request.body.decode('utf-8'))
+    if save:
+        try:
+            calculate_shipping(request.body.decode('utf-8'))
+        except:
+            pass
+    else:
+        calculate_shipping(request.body.decode('utf-8'))
 
     responsedata = json.dumps(
         {
