@@ -84,7 +84,7 @@ def view_request_details(request):
     req.json = prettify_json(req.json)
     return {'request': req}
 
-@view_config(route_name='request_test', renderer='/templates/request_test.pt')
+@view_config(route_name='request_test', renderer='templates/request_test.pt')
 def view_request_test(request):
     id = request.matchdict['id']
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
