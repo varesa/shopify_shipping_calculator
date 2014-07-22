@@ -19,8 +19,12 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 class QuoteRequest(Base):
+    """
+    A database model used for storing requests made to the
+    callback by shopify for later inspection and testing
+    """
     __tablename__ = 'requests'
     uuid = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
-    json = Column(Text)
+    json = Column(Text) # Stores json-formated request body from shopify
