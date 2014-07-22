@@ -92,7 +92,7 @@ def view_request_test(request):
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
 
     fakereq = DummyRequest()
-    request.body = req.json.encode('utf-8')
+    fakereq.body = req.json.encode('utf-8')
     response = view_callback(fakereq, save=False)
     response_data = response.body.decode('utf-8')
 
