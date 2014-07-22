@@ -3,6 +3,7 @@ import json
 test_origin = "Villähde, Finland"
 
 from shopify import Product
+from .api_auth import create_session
 
 def calculate_shipping(requestjson):
     """
@@ -15,6 +16,8 @@ def calculate_shipping(requestjson):
     items = data['rate']['items']
     destination = data['rate']['destination']
 
+    create_session()
+
     for item in items:
-        prod = Product.find(id=item['product_id'])
+        prod = Product.find(item['product_id'])
         print(prod)
