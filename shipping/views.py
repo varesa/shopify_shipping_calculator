@@ -94,4 +94,6 @@ def view_request_test(request):
     response = view_callback(fakereq)
     response_data = response.body.decode('utf-8')
 
+    response_data = prettify_json(response_data)
+
     return {'result': response_data}
