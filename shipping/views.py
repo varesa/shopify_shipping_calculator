@@ -2,6 +2,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 
 from datetime import datetime
+import json
 
 from sqlalchemy.exc import DBAPIError
 
@@ -33,7 +34,7 @@ def view_setup(request):
     services = CarrierService.find()
     return {'services': services}
 
-@view_config(route_name='setup-addservice', renderer='templates/generic_text.pt')
+@view_config(route_name='setup_addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
     create_session()
 
@@ -46,7 +47,21 @@ def view_setup_addservice(request):
 
     return {'header': "Service added", 'text': "<a href='/'>Return</a>"}
 
+
 @view_config(route_name='requests', renderer='templates/requests.pt')
 def view_requests(request):
     requests = DBSession.query(QuoteRequest).all()
     return {'requests': requests}
+
+
+def prettify_json(data):
+    expanded = json.loads(data)
+    return json.dumps(expanded, indent=4, separators=(',', ': '))
+
+
+@view_config(route_name='request_details', renderer='templates/request_details.pt')
+def view_request_details(request):
+    id = request.matchdict['id']
+    req = DBSession.query(QuoteRequest).filter_by(id=id).first()
+    req.json = prettify_json(req.json)
+    return {'request': req}
