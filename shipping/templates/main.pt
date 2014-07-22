@@ -1,0 +1,10 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">Toimituslaskuri</metal:main>
+
+    <metal:main metal:fill-slot="content">
+        <div class="container">
+           <h2>Toiminnot:</h2><br><br>
+           <a href="/setup">Rekisteröi shopify-alustaan</a><br>
+        </div>
+    </metal:main>
+</metal:main>
