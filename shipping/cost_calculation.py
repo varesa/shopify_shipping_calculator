@@ -4,7 +4,16 @@ from math import ceil
 from shopify import Product
 from .api_auth import create_session
 
-test_origin = "Villähde, Finland"
+from .api_distance import get_distance
+
+test_origin = json.dumps({
+    'address1': '',
+    'address2': '',
+    'zip': '',
+    'city': 'Villähde',
+    'country': 'Finland'
+})
+price_per_km = 5.00
 
 def calculate_shipping(requestjson):
     """
@@ -15,7 +24,7 @@ def calculate_shipping(requestjson):
     """
     data = json.loads(requestjson)
     items = data['rate']['items']
-    destination = data['rate']['destination']
+    destination = json.dumps(data['rate']['destination'])
 
     create_session()
 
@@ -34,3 +43,8 @@ def calculate_shipping(requestjson):
             bag_loads.append( (location, ceil(quantity/18)) )
 
     print(bag_loads)
+
+    total_price = 0
+
+    for load in bag_loads:
+        total_price += load[1] * price_per_km * get_distance(load[0], destination)
