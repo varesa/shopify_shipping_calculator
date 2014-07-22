@@ -21,7 +21,7 @@ def url_from_json(location):
     full_address = ""
     full_address += location['address1'] + ", "
     full_address += (location['address2'] + ", ") if len(location['address2']) > 0 else ''
-    full_address += location['zip'] + " "
+    full_address += location['postal_code'] + " "
     full_address += location['city'] + ", "
     full_address += location['country']
 

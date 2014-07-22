@@ -9,7 +9,7 @@ from .api_distance import get_distance
 test_origin = json.dumps({
     'address1': '',
     'address2': '',
-    'zip': '',
+    'postal_code': '',
     'city': 'Villähde',
     'country': 'Finland'
 })
