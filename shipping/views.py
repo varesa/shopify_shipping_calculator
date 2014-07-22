@@ -1,10 +1,13 @@
 from pyramid.response import Response
 from pyramid.view import view_config
 
+from datetime import datetime
+
 from sqlalchemy.exc import DBAPIError
 
 from .models import (
     DBSession,
+    QuoteRequest
     )
 
 from .api_auth import create_session
@@ -17,7 +20,11 @@ def my_view(request):
 
 @view_config(route_name='callback')
 def view_callback(request):
-    print(request.json_body)
+    q = QuoteRequest()
+    q.date = datetime.now()
+    q.json = request.json_body
+    DBSession.add(q)
+
     return Response('')
 
 @view_config(route_name='setup', renderer='templates/setup.pt')
