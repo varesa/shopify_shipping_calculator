@@ -31,7 +31,7 @@ def view_callback(request, save=True):
         q.json = request.body
         DBSession.add(q)
 
-    calculate_shipping(request.body)
+    calculate_shipping(request.body.decode('utf-8'))
 
     responsedata = json.dumps(
         {
@@ -50,11 +50,13 @@ def view_callback(request, save=True):
 
     return Response(responsedata)
 
+
 @view_config(route_name='setup', renderer='templates/setup.pt')
 def view_setup(request):
     create_session()
     services = CarrierService.find()
     return {'services': services}
+
 
 @view_config(route_name='setup_addservice', renderer='templates/generic_text.pt')
 def view_setup_addservice(request):
