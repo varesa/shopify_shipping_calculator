@@ -2,6 +2,8 @@ import json
 
 test_origin = "Villähde, Finland"
 
+from shopify import Product
+
 def calculate_shipping(requestjson):
     """
     :param requestjson: String with JSON-data that contains the request from shopify
@@ -14,4 +16,5 @@ def calculate_shipping(requestjson):
     destination = data['rate']['destination']
 
     for item in items:
-        print(item)
+        prod = Product.find(id=item['product_id'])
+        print(prod)
