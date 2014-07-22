@@ -20,11 +20,12 @@ def my_view(request):
     return {'one': "abc", 'project': 'shipping'}
 
 @view_config(route_name='callback')
-def view_callback(request):
-    q = QuoteRequest()
-    q.date = datetime.now()
-    q.json = request.body
-    DBSession.add(q)
+def view_callback(request, save=True):
+    if save:
+        q = QuoteRequest()
+        q.date = datetime.now()
+        q.json = request.body
+        DBSession.add(q)
 
     calculate_shipping(request.body)
 
@@ -92,7 +93,7 @@ def view_request_test(request):
 
     fakereq = DummyRequest()
     request.body = req.json.encode('utf-8')
-    response = view_callback(fakereq)
+    response = view_callback(fakereq, save=False)
     response_data = response.body.decode('utf-8')
 
     response_data = prettify_json(response_data)
