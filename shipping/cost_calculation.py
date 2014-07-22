@@ -48,3 +48,5 @@ def calculate_shipping(requestjson):
 
     for load in bag_loads:
         total_price += load[1] * price_per_km * get_distance(load[0], destination)
+
+    return total_price * 100

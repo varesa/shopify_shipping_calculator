@@ -25,11 +25,11 @@ def view_callback(request, save=True):
 
     if save:
         try:
-            calculate_shipping(request.body.decode('utf-8'))
+            shipping = calculate_shipping(request.body.decode('utf-8'))
         except:
             pass
     else:
-        calculate_shipping(request.body.decode('utf-8'))
+        shipping = calculate_shipping(request.body.decode('utf-8'))
 
     responsedata = json.dumps(
         {
@@ -37,7 +37,7 @@ def view_callback(request, save=True):
                 {
                     "service_name": 'TestShipping',
                     "service_code": 'tst',
-                    "total_price":  '15000',
+                    "total_price":  shipping,
                     "currency": "EUR",
                     "min_delivery_date": "2013-10-25 14:48:45 +0200",
                     "max_delivery_date": "2013-10-25 14:48:45 +0200"
