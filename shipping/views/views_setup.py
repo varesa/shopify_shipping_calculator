@@ -5,7 +5,7 @@ from shopify import CarrierService
 from ..api_auth import create_session
 
 
-@view_config(route_name='setup', renderer='templates/setup.pt')
+@view_config(route_name='setup', renderer='../templates/setup.pt')
 def view_setup(request):
     """
     View method for the setup page, shows registered CarrierServices
@@ -18,7 +18,7 @@ def view_setup(request):
     return {'services': services}
 
 
-@view_config(route_name='setup_addservice', renderer='templates/generic_text.pt')
+@view_config(route_name='setup_addservice', renderer='../templates/generic_text.pt')
 def view_setup_addservice(request):
     """
     View method for a page for registering a new CarrierService

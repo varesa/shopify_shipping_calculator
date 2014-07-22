@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 
 
-@view_config(route_name='home', renderer='templates/main.pt')
+@view_config(route_name='home', renderer='../templates/main.pt')
 def view_main(request):
     """
     View method for the navigational frontpage

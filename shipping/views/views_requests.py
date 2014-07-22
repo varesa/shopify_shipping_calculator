@@ -10,7 +10,7 @@ from ..utils import prettify_json
 
 from .views_callback import view_callback
 
-@view_config(route_name='requests', renderer='templates/requests.pt')
+@view_config(route_name='requests', renderer='../templates/requests.pt')
 def view_requests(request):
     """
     View method for viewing the saved requests from shopify
@@ -22,7 +22,7 @@ def view_requests(request):
     return {'requests': requests}
 
 
-@view_config(route_name='request_details', renderer='templates/request_details.pt')
+@view_config(route_name='request_details', renderer='../templates/request_details.pt')
 def view_request_details(request):
     """
     View method for viewing the detailed data contained in a saved request
@@ -36,7 +36,7 @@ def view_request_details(request):
     return {'request': req}
 
 
-@view_config(route_name='request_test', renderer='templates/request_test.pt')
+@view_config(route_name='request_test', renderer='../templates/request_test.pt')
 def view_request_test(request):
     """
     View method to test the calculation using a saved request. Calls view_callback
