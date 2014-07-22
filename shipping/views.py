@@ -1,5 +1,5 @@
 from pyramid.response import Response
-from pyramid.request import Request
+from pyramid.testing import DummyRequest
 from pyramid.view import view_config
 
 from datetime import datetime
@@ -89,7 +89,7 @@ def view_request_test(request):
     id = request.matchdict['id']
     req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
 
-    fakereq = Request()
+    fakereq = DummyRequest()
     request.body = req.json
     response = view_callback(fakereq)
     response_data = response.body.decode('utf-8')
