@@ -5,6 +5,20 @@
 
             <div class="panel">
                 <div class="panel-body">
+                    <h2>Laata uuudet</h2>
+                    <p>Lataa uudet lastaustiedot CSV-tiedostona. Muoto: <br>
+                    Lastauspaikan nimi | Osoite
+
+                    Eroitinmerkki: ';'</p>
+
+                    <form enctype="multipart/form-data" method="POST">
+                        <input type="file" name="file_locations">
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-body">
                     <table class="table">
                         <tr>
                             <th>Paikka</th>
