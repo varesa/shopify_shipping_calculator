@@ -1,8 +1,0 @@
-<metal:main metal:use-macro="load: master.pt">
-    <metal:slot metal:fill-slot="content">
-        <div class="container">
-            <h2>Tuotteet</h2>
-
-        </div>
-    </metal:slot>
-</metal:main>

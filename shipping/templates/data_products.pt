@@ -1,15 +1,16 @@
 <metal:main metal:use-macro="load: master.pt">
     <metal:slot metal:fill-slot="content">
         <div class="container">
-            <h2>Lastauspaikat</h2>
+            <h2>Tuotteet</h2>
+
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h3>Laata uudet</h3>
-                    <p>Lataa uudet lastaustiedot CSV-tiedostona.<br><br>
+                    <p>Lataa uudet tuotteet CSV-tiedostona.<br><br>
                     Muoto: <br>
 
-                    Lastauspaikan nimi | Osoite<br><br>
+                    tuotteen-handle | tuotteen-tyyppi | lastauspaikka1 | lastauspaikka2 | ...<br><br>
 
                     Eroitinmerkki: ';'</p><br><br>
 
@@ -17,7 +18,7 @@
                         <table>
                             <tr>
                                 <td style="vertical-align: middle"><label for="file">Tiedosto: </label>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td><input style="display: inline;" id="file" type="file" name="file_locations">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><input style="display: inline;" id="file" type="file" name="file_products">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td><input type="submit" value="Lataa">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             </tr>
                         </table>
@@ -27,20 +28,21 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Lastauspaikat
+                    Tuotteet
                 </div>
                 <table class="table">
                     <tr>
-                        <th>Paikka</th>
-                        <th>Osoite</th>
+                        <th>Handle</th>
+                        <th>Tyyppi</th>
+                        <th>Lastauspaikat</th>
                     </tr>
-                    <tr tal:repeat="location locations">
-                        <td>${location.name}</td>
-                        <td>${location.address}</td>
+                    <tr tal:repeat="product products">
+                        <td>${product.handle}</td>
+                        <td>${product.type}</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
-
         </div>
     </metal:slot>
 </metal:main>

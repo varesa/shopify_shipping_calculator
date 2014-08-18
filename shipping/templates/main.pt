@@ -4,8 +4,8 @@
     <metal:main metal:fill-slot="content">
         <div class="container">
            <h2>Toiminnot:</h2><br><br>
-           <a href="/data">Tuote- ja lastauspaikkatiedot</a>
-           <a href="/requests">Näytä shopifylta tulleet pyynnöt</a>
+           <a href="/data">Tuote- ja lastauspaikkatiedot</a><br>
+           <a href="/requests">Näytä shopifylta tulleet pyynnöt</a><br>
            <a href="/setup">Rekisteröi shopify-alustaan</a><br>
         </div>
     </metal:main>

@@ -35,8 +35,8 @@ class QuoteRequest(Base):
 
 
 product_location_assoc_table = Table('association', Base.metadata,
-                                     Column('product_id', Integer, ForeignKey('product.uuid')),
-                                     Column('location_id', Integer, ForeignKey('location.uuid'))
+                                     Column('product_id', Integer, ForeignKey('products.uuid')),
+                                     Column('location_id', Integer, ForeignKey('shipping_locations.uuid'))
                                     )
 
 
