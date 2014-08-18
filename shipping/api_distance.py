@@ -75,7 +75,7 @@ def get_distance_json_json(origin_json, destination_json):
     :type destination_json: str
     :return: distance as returned by :method: get_distance_url_url
     """
-    get_distance_url_url(url_from_json(origin_json), url_from_json(destination_json))
+    return get_distance_url_url(url_from_json(origin_json), url_from_json(destination_json))
 
 
 def get_distance_string_json(origin_string, destination_json):
@@ -87,4 +87,4 @@ def get_distance_string_json(origin_string, destination_json):
     :type destination_json: str
     :return: distance as returned by :method: get_distance_url_url
     """
-    get_distance_url_url(url_from_string(origin_string), url_from_json(destination_json))
+    return get_distance_url_url(url_from_string(origin_string), url_from_json(destination_json))
