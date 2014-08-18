@@ -1,10 +1,14 @@
 import json
 from math import ceil
 
-from shopify import Product
+from shopify import Product as sf_Product
 from .api_auth import create_session
 
-from .api_distance import get_distance
+from .distance_helpers import find_closest
+
+from .models import DBSession, ShippingLocation
+from .models import Product as db_Product
+
 
 test_origin = json.dumps({
     'address1': '',
@@ -14,6 +18,7 @@ test_origin = json.dumps({
     'country': 'Finland'
 })
 price_per_km = 5.00
+
 
 def calculate_shipping(requestjson):
     """
@@ -28,25 +33,31 @@ def calculate_shipping(requestjson):
 
     create_session()
 
-    bags = {}
-    bag_loads = []
+    # [{location, distance, bags}, {...}]
+    bag_locations = []
 
     for item in items:
-        prod = Product.find(item['product_id'])
+        handle = sf_Product.find(item['product_id']).handle
+        product = DBSession.query(db_Product).filter_by(handle=handle)
 
-        if "suursäkki-1000l" in prod.tags:
-            if test_origin not in bags.keys():
-                bags[test_origin] = 0
-            bags[test_origin] += item['quantity']
+        closest = find_closest(product.locations, destination)
 
-        for location, quantity in bags.items():
-            bag_loads.append( (location, ceil(quantity/18)) )
+        if product.type == 'säkki-1000l':
+            found = False
+            for bag_location in bag_locations:
+                if bag_location['location'] == closest['location']:
+                    found = True
+                    bag_location['bags'] += item['quantity']
 
-    print(bag_loads)
+            if not found:
+                bag_locations.append({'location': closest['location'], 'distance': closest['distance'], 'bags': item['quantity']})
+
+        elif product.type == 'irtokuorma':
+            pass
 
     total_price = 0
 
-    for load in bag_loads:
-        total_price += load[1] * price_per_km * get_distance(load[0], destination)
+    for bag_location in bag_locations:
+        total_price += price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)
 
     return total_price * 100

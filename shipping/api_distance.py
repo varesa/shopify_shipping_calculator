@@ -88,22 +88,3 @@ def get_distance_string_json(origin_string, destination_json):
     :return: distance as returned by :method: get_distance_url_url
     """
     get_distance_url_url(url_from_string(origin_string), url_from_json(destination_json))
-
-
-def shortest_distance_string_json(origin_strings, destination_json):
-    """
-    Find the shortest pair from a group of origins and a destination
-    :param origin_strings: Array of origins
-    :type origin_strings: array of strings
-    :param destination_json: destination in JSON form
-    :type destination_json: str
-    :return: Distance between the closest two points
-    """
-    min_dist = None
-
-    for origin in origin_strings:
-        dist = get_distance_string_json(origin, destination_json)
-        if min_dist == None or dist < min_dist:
-            min_dist = dist
-
-    return min_dist
