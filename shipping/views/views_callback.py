@@ -7,6 +7,8 @@ from pyramid.response import Response
 from ..models import DBSession
 from ..models import QuoteRequest
 
+import transaction
+
 from ..cost_calculation import calculate_shipping
 
 @view_config(route_name='callback')
@@ -18,10 +20,11 @@ def view_callback(request, save=True):
     :return: Dictionary of values to be used in the template
     """
     if save:
-        q = QuoteRequest()
-        q.date = datetime.now()
-        q.json = request.body
-        DBSession.add(q)
+        with transaction.manager:
+            q = QuoteRequest()
+            q.date = datetime.now()
+            q.json = request.body
+            DBSession.add(q)
 
     if save:
         try:
