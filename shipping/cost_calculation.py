@@ -38,7 +38,7 @@ def calculate_shipping(requestjson):
 
     for item in items:
         handle = sf_Product.find(item['product_id']).handle
-        product = DBSession.query(db_Product).filter_by(handle=handle)
+        product = DBSession.query(db_Product).filter_by(handle=handle).first()
 
         closest = find_closest(product.locations, destination)
 
