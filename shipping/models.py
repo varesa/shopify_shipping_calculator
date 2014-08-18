@@ -3,7 +3,9 @@ from sqlalchemy import (
     Index,
     Integer,
     Text,
-    DateTime
+    DateTime,
+    Table,
+    ForeignKey,
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,6 +13,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
+    relationship
     )
 
 from zope.sqlalchemy import ZopeTransactionExtension
@@ -31,6 +34,12 @@ class QuoteRequest(Base):
     json = Column(Text) # Stores json-formated request body from shopify
 
 
+product_location_assoc_table = Table('association', Base.metadata,
+                                     Column('product_id', Integer, ForeignKey('product.uuid')),
+                                     Column('location_id', Integer, ForeignKey('location.uuid'))
+                                    )
+
+
 class ShippingLocation(Base):
     __tablename__ = 'shipping_locations'
     uuid = Column(Integer, primary_key=True)
@@ -38,9 +47,14 @@ class ShippingLocation(Base):
     name = Column(Text)
     address = Column(Text)
 
+
 class Product(Base):
     __tablename__ = 'products'
     uuid = Column(Integer, primary_key=True)
 
     handle = Column(Text)
     type = Column(Text)
+
+    locations = relationship('ShippingLocation',
+                             secondary=product_location_assoc_table,
+                             backref='products')
