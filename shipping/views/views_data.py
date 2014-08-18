@@ -13,8 +13,8 @@ def view_data(request):
     return {}
 
 
-@view_config(route_name='data_lastauspaikat', renderer='../templates/data_lastauspaikat.pt')
-def view_data_lastauspaikat(request):
+@view_config(route_name='data_locations', renderer='../templates/data_locations.pt')
+def view_data_locations(request):
     """
     View method for listing data associated with different loading locations
     :param request: HTTP Request object
@@ -27,8 +27,8 @@ def view_data_lastauspaikat(request):
     return {'locations': locations}
 
 
-@view_config(route_name='data_tuotteet', renderer='../templates/data_tuotteet.pt')
-def view_data_tuotteet(request):
+@view_config(route_name='data_products', renderer='../templates/data_products.pt')
+def view_data_products(request):
     """
     View method for listing data associated with different products
     :param request: HTTP Request object
