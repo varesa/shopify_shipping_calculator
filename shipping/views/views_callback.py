@@ -1,4 +1,5 @@
 import json
+import traceback
 from datetime import datetime
 
 from pyramid.view import view_config
@@ -30,7 +31,7 @@ def view_callback(request, save=True):
         try:
             shipping = calculate_shipping(request.body.decode('utf-8'))
         except:
-            pass
+            traceback.print_exc()
     else:
         shipping = calculate_shipping(request.body.decode('utf-8'))
 
