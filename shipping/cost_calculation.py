@@ -17,7 +17,20 @@ test_origin = json.dumps({
     'city': 'Villähde',
     'country': 'Finland'
 })
-price_per_km = 5.00
+bags_price_per_km = 5.00
+irtokuorma_price_per_km = 4.1
+
+
+def irtokuorma_hinta(distance, amount):
+    if amount <= 18:
+        return 60 + distance*irtokuorma_price_per_km
+    elif amount <= 38:
+        return 120 + distance*irtokuorma_price_per_km
+    else:
+        base = 120
+        extra_tn = amount - 38
+        extra = ceil(extra_tn/20)*20
+        return base + extra + distance*irtokuorma_price_per_km
 
 
 def calculate_shipping(requestjson):
@@ -35,6 +48,7 @@ def calculate_shipping(requestjson):
 
     # [{location, distance, bags}, {...}]
     bag_locations = []
+    irtokuormat = []
 
     for item in items:
         handle = sf_Product.find(item['product_id']).handle
@@ -53,11 +67,18 @@ def calculate_shipping(requestjson):
                 bag_locations.append({'location': closest['location'], 'distance': closest['distance'], 'bags': item['quantity']})
 
         elif product.type == 'irtokuorma':
-            pass
+            irtokuormat.append({'location': closest['location'], 'distance': closest['distance'], 'amount': item['quantity']})
 
     total_price = 0
 
     for bag_location in bag_locations:
-        total_price += price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)
+        print(str(bag_location['location']) + " km * " + str(bag_location['bags']) + "bags = " +
+              str(bags_price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)))
+        total_price += bags_price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)
+
+    for irtokuorma in irtokuormat:
+        print(str(irtokuorma['distance']) + " km * " + str(irtokuorma['amount']) + " tn = " +
+              str(irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])))
+        total_price += irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])
 
     return total_price * 100
