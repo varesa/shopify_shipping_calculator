@@ -1,5 +1,7 @@
 from .api_distance import get_distance_string_json
 from .models import ShippingLocation
+from .exceptions import InvalidLocationException
+
 
 def find_closest(locations, destination_json):
     """
@@ -14,9 +16,17 @@ def find_closest(locations, destination_json):
     closest = None
 
     for location in locations:
-        dist = get_distance_string_json(location.address, destination_json)
+        try:
+            dist = get_distance_string_json(location.address, destination_json)
+        except InvalidLocationException:
+            print("[ERROR] INVALID LOCATION DATA") # TODO: Add real logging/error reporting
+            continue
+
         if not min_dist or dist < min_dist:
             min_dist = dist
             closest = location
+
+    if closest is None:
+        raise InvalidLocationException
 
     return {'location': closest, 'distance': min_dist}
