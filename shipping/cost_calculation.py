@@ -72,7 +72,7 @@ def calculate_shipping(requestjson):
     total_price = 0
 
     for bag_location in bag_locations:
-        print(str(bag_location['location']) + " km * " + str(bag_location['bags']) + "bags = " +
+        print(str(bag_location['distance']) + " km * " + str(bag_location['bags']) + " bags = " +
               str(bags_price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)))
         total_price += bags_price_per_km * bag_location['distance'] * ceil(bag_location['bags']/18)
 
