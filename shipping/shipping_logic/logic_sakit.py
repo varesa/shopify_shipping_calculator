@@ -6,11 +6,13 @@ from ..distance_helpers import find_closest
 class CategorySakit:
 
     destination = None
-    ":type: str (json)"
-    items = []
-    ":type: (Product, int)"
+    ":type: str"
+    items = None
+    ":type: list of (Product, int)"
 
     def __init__(self, destination):
+        self.items = []
+
         self.destination = destination
 
     def add_item(self, item, quantity):

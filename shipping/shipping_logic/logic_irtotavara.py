@@ -35,10 +35,11 @@ class CategoryIrtotavara():
 
     destination = None
     ":type: str"
-    items = []
+    items = None
     ":type: list of (Product, int)"
 
     def __init__(self, destination):
+        self.items = []
         self.destination = destination
 
     def add_item(self, item, quantity):

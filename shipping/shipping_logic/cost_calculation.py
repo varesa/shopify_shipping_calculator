@@ -25,8 +25,6 @@ def calculate_shipping(requestjson):
 
     create_session()
 
-    # [{location, distance, bags}, {...}]
-
     sakit = CategorySakit(destination)
     irtotavara = CategoryIrtotavara(destination)
     muut = CategoryMuut(destination)

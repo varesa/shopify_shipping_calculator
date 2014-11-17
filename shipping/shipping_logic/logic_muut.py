@@ -1,9 +1,13 @@
 class CategoryMuut:
 
     destination = None
-    items = []
+    ":type: str"
+    items = None
+    ":type: list of (Product, int)"
 
     def __init__(self, destination):
+        self.items = []
+
         self.destination = destination
 
     def add_item(self, item, quantity):
