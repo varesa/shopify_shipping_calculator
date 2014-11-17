@@ -1,7 +1,7 @@
 from sqlalchemy import (
     Column,
-    Index,
     Integer,
+    Float,
     Text,
     DateTime,
     Table,
@@ -54,6 +54,9 @@ class Product(Base):
 
     handle = Column(Text)
     type = Column(Text)
+    subtype = Column(Text)
+
+    maara_per_yksikko = Column(Float)
 
     locations = relationship('ShippingLocation',
                              secondary=product_location_assoc_table,

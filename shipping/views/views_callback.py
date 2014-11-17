@@ -4,13 +4,12 @@ from datetime import datetime
 
 from pyramid.view import view_config
 from pyramid.response import Response
+import transaction
 
 from ..models import DBSession
 from ..models import QuoteRequest
+from ..shipping.shipping_logic.cost_calculation import calculate_shipping
 
-import transaction
-
-from ..cost_calculation import calculate_shipping
 
 @view_config(route_name='callback')
 def view_callback(request, save=True):
