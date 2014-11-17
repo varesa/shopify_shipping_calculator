@@ -38,6 +38,8 @@ class CategorySakit:
     def get_total(self):
         bag_locations = self.sort_by_origin(self.items)
 
+        return 0
+
 """found = False
     for bag_location in bag_locations:
         if bag_location['location'] == closest['location']:
