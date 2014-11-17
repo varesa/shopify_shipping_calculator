@@ -82,8 +82,9 @@ def view_data_products(request):
             parts = line.split(';')
             handle = parts[0].strip()
             type = parts[1].strip()
+            subtype = parts[2].strip()
             locations = []
-            for field in parts[2:]:
+            for field in parts[3:]:
                 location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
                 if location:
                     locations.append(location)

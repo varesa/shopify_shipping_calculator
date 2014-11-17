@@ -10,7 +10,7 @@
                     <p>Lataa uudet tuotteet CSV-tiedostona.<br><br>
                     Muoto: <br>
 
-                    tuotteen-handle | tuotteen-tyyppi | lastauspaikka1 | lastauspaikka2 | ...<br><br>
+                    tuotteen-handle | tuotteen-tyyppi | ala-tyyppi | lastauspaikka1 | lastauspaikka2 | ...<br><br>
 
                     Eroitinmerkki: ';'</p><br><br>
 

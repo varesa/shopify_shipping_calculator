@@ -35,7 +35,7 @@ def calculate_shipping(requestjson):
         handle = sf_Product.find(item['product_id']).handle
         product = DBSession.query(db_Product).filter_by(handle=handle).first()
 
-        if product.type == 'säkki':
+        if product.type == 'sakki':
             sakit.add_item(product, item['quantity'])
         elif product.type == 'irtokuorma':
             irtotavara.add_item(product, item['quantity'])
