@@ -99,6 +99,7 @@ class CategoryIrtotavara():
                         quantity -= KASETTI_MAX_PAINO / item.maara_per_kpl
 
             total += cost
+        return total
 
 """irtokuormat.append({'location': closest['location'], 'distance': closest['distance'], 'amount': item['quantity']})"""
 
