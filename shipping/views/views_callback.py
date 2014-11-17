@@ -8,7 +8,7 @@ import transaction
 
 from ..models import DBSession
 from ..models import QuoteRequest
-from ..shipping.shipping_logic.cost_calculation import calculate_shipping
+from ..shipping_logic.cost_calculation import calculate_shipping
 
 
 @view_config(route_name='callback')
