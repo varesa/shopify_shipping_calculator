@@ -10,7 +10,7 @@
                     <p>Lataa uudet tuotteet CSV-tiedostona.<br><br>
                     Muoto: <br>
 
-                    tuotteen-handle | tuotteen-tyyppi | ala-tyyppi | lastauspaikka1 | lastauspaikka2 | ...<br><br>
+                    tuotteen-handle | tuotteen-tyyppi | ala-tyyppi | määrä/tilausyksikkö | lastauspaikka1 | lastauspaikka2 | ...<br><br>
 
                     Eroitinmerkki: ';'</p><br><br>
 
@@ -35,12 +35,14 @@
                         <th>Handle</th>
                         <th>Tyyppi</th>
                         <th>Alatyyppi</th>
+                        <th>Määrä/tilausyksikkö</th>
                         <th>Lastauspaikat</th>
                     </tr>
                     <tr tal:repeat="product products">
                         <td>${product.handle}</td>
                         <td>${product.type}</td>
                         <td>${product.subtype}</td>
+                        <td>${product.maara_per_kpl}</td>
                         <td>${', '.join([location.name for location in product.locations])}</td>
                     </tr>
                 </table>

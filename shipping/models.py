@@ -56,7 +56,7 @@ class Product(Base):
     type = Column(Text)
     subtype = Column(Text)
 
-    maara_per_yksikko = Column(Float)
+    maara_per_kpl = Column(Float)
 
     locations = relationship('ShippingLocation',
                              secondary=product_location_assoc_table,

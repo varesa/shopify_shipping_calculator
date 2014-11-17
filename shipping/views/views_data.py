@@ -83,8 +83,9 @@ def view_data_products(request):
             handle = parts[0].strip()
             type = parts[1].strip()
             subtype = parts[2].strip()
+            maara_per_yksikko = parts[3].strip()
             locations = []
-            for field in parts[3:]:
+            for field in parts[4:]:
                 location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
                 if location:
                     locations.append(location)
@@ -96,7 +97,8 @@ def view_data_products(request):
             DBSession.query(Product).delete()
 
         for product in products:
-            DBSession.add(Product(handle=product[0], type=product[1], subtype=product[2], locations=product[3]))
+            DBSession.add(Product(handle=product[0], type=product[1], subtype=product[2],
+                                  maara_per_yksikko=product[3], locations=product[4]))
 
     products = DBSession.query(Product).all()
 
