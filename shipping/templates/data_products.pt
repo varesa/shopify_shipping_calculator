@@ -34,11 +34,13 @@
                     <tr>
                         <th>Handle</th>
                         <th>Tyyppi</th>
+                        <th>Alatyyppi</th>
                         <th>Lastauspaikat</th>
                     </tr>
                     <tr tal:repeat="product products">
                         <td>${product.handle}</td>
                         <td>${product.type}</td>
+                        <td>${product.subtype}</td>
                         <td>${', '.join([location.name for location in product.locations])}</td>
                     </tr>
                 </table>
