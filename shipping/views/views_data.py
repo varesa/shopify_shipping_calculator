@@ -89,14 +89,14 @@ def view_data_products(request):
                 if location:
                     locations.append(location)
 
-            products.append((handle, type, locations))
+            products.append((handle, type, subtype, locations))
 
         if len(products) > 0:
             # We have somewhat valid data
             DBSession.query(Product).delete()
 
         for product in products:
-            DBSession.add(Product(handle=product[0], type=product[1], locations=product[2]))
+            DBSession.add(Product(handle=product[0], type=product[1], subtype=product[2], locations=product[3]))
 
     products = DBSession.query(Product).all()
 
