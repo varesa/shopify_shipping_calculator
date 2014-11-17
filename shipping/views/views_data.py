@@ -90,7 +90,7 @@ def view_data_products(request):
                 if location:
                     locations.append(location)
 
-            products.append((handle, type, subtype, locations))
+            products.append((handle, type, subtype, maara_per_yksikko, locations))
 
         if len(products) > 0:
             # We have somewhat valid data
