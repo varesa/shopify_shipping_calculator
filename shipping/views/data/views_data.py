@@ -8,12 +8,13 @@
 from pyramid.view import view_config
 
 
-@view_config(route_name='home', renderer='../templates/main.pt')
-def view_main(request):
+@view_config(route_name='data', renderer='../templates/data.pt')
+def view_data(request):
     """
-    View method for the navigational frontpage
+    View method for listing different data-types used by the application
     :param request: HTTP Request object
     :type request: pyramid.request.Request
-    :return: Dictionary of values to be used in the template
+    :return: Dictionary of values for template rendering
     """
     return {}
+

@@ -1,3 +1,10 @@
+#
+# Project: Shopify shipping calculator
+# Copyright 2014 - 2015 Esa Varemo <esa@kuivanto.fi>
+# Unauthorized use or copying of this file is prohibited
+#
+
+
 from .api_distance import get_distance_string_json
 from .models import ShippingLocation
 from .exceptions import InvalidLocationException

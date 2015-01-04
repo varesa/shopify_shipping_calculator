@@ -4,3 +4,5 @@
 # Unauthorized use or copying of this file is prohibited
 #
 
+
+from pyramid.view import view_config
