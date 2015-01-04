@@ -20,6 +20,15 @@
         <div class="container">
             <h2>Toimitushinnat</h2>
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Kuorikate
+                </div>
+                <div class="panel-body">
+                    Kiinteä hinta 0€
+                </div>
+            </div>
+
             <form method="POST">
                 <input type="hidden" name="nuppikuorma" value="yes">
                 <div class="panel panel-default">

@@ -6,36 +6,41 @@
 
 
 from ..distance_helpers import find_closest
-from ..models import Product
+from ..models import DBSession, ShippingCostIrtotavara
 
 
 HINTA_KUORIKATE_KIINTEA = 50
 
-NUPPI_MAX_PAINO = 18.0
-NUPPI_LAHTOHINTA_KUORMA = 58.0
+cost_nuppi = DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first()
+""":type: ShippingCostIrtotavara"""
 
-NUPPI_ALUE1_YLARAJA = 7.0
-NUPPI_ALUE1_HINTA_KM = 0.0
+NUPPI_MAX_PAINO = cost_nuppi.max_weight
+NUPPI_LAHTOHINTA_KUORMA = cost_nuppi.base_cost
 
-NUPPI_ALUE2_YLARAJA = 40.0
-NUPPI_ALUE2_HINTA_KM = 5.0
+NUPPI_ALUE1_YLARAJA = cost_nuppi.range1_end
+NUPPI_ALUE1_HINTA_KM = cost_nuppi.range1_cost
+
+NUPPI_ALUE2_YLARAJA = cost_nuppi.range2_end
+NUPPI_ALUE2_HINTA_KM = cost_nuppi.range2_cost
 
 NUPPI_ALUE3_YLARAJA = None
-NUPPI_ALUE3_HINTA_KM = 4.4
+NUPPI_ALUE3_HINTA_KM = cost_nuppi.range3_cost
 
 
+cost_kasetti = DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
+""":type: ShippingCostIrtotavara"""
 
-KASETTI_MAX_PAINO = 38.0
-KASETTI_LAHTOHINTA_KUORMA = 128.0
+KASETTI_MAX_PAINO = cost_kasetti.max_weight
+KASETTI_LAHTOHINTA_KUORMA = cost_kasetti.base_cost
 
-KASETTI_ALUE1_YLARAJA = 10
-KASETTI_ALUE1_HINTA_KM = 0.0
+KASETTI_ALUE1_YLARAJA = cost_kasetti.range1_end
+KASETTI_ALUE1_HINTA_KM = cost_kasetti.range1_cost
 
-KASETTI_ALUE2_YLARAJA = 90.0
-KASETTI_ALUE2_HINTA_KM = 4.2
+KASETTI_ALUE2_YLARAJA = cost_kasetti.range2_end
+KASETTI_ALUE2_HINTA_KM = cost_kasetti.range2_cost
 
 KASETTI_ALUE3_YLARAJA = None
-KASETTI_ALUE3_HINTA_KM = 3.8
+KASETTI_ALUE3_HINTA_KM = cost_kasetti.range3_cost
 
 
 class CategoryIrtotavara():
