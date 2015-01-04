@@ -40,5 +40,6 @@ def view_data_costs(request):
         costs.range3_cost = string_to_float_or_zero(request.POST['range3_cost'])
 
     return {
-        'costs': DBSession.query(ShippingCostIrtotavara).first()
+        'nuppikuorma': DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first(),
+        'kasettikuorma': DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
     }

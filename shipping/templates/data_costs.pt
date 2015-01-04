@@ -21,35 +21,89 @@
             <h2>Toimitushinnat</h2>
 
             <form method="POST">
+                <input type="hidden" name="nuppikuorma" value="yes">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Irtokuormat&nbsp;&nbsp;&nbsp;<input type="submit" value="Tallenna">
+                        Nuppikuorma&nbsp;&nbsp;&nbsp;<input type="submit" value="Tallenna">
                     </div>
                     <div class="panel-body">
                         <table class="table">
                             <tr>
+                                <td>
+                                    Maksimipaino:
+                                </td>
+                                <td>
+                                    <input name="max_weight" value="${nuppikuorma.max_weight}"> t<br><br>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>&nbsp;&nbsp;&nbsp;0 km</td>
+                                <td><input name="base_cost" value="${nuppikuorma.base_cost}"> € (Pohjahinta)</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+                                <td><input name="range1_cost" value="${nuppikuorma.range1_cost}"> € / km</td>
+                            </tr>
+                            <tr>
+                                <td><input name="range1_end" value="${nuppikuorma.range1_end}"> km</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
-                                <td> <input name="range1_cost" value="${costs.range1_cost}"> € / km</td>
+                                <td><input name="range2_cost" value="${nuppikuorma.range2_cost}"> € / km</td>
                             </tr>
                             <tr>
-                                <td><input name="range1_end" value="${costs.range1_end}"> km</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
-                                <td><input name="range2_cost" value="${costs.range2_cost}"> € / km</td>
-                            </tr>
-                            <tr>
-                                <td><input name="range2_end" value="${costs.range2_end}"> km</td>
+                                <td><input name="range2_end" value="${nuppikuorma.range2_end}"> km</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | </td>
-                                <td><input name="range3_cost" value="${costs.range3_cost}"> € / km</td>
+                                <td><input name="range3_cost" value="${nuppikuorma.range3_cost}"> € / km</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+
+            <form method="POST">
+                <input type="hidden" name="kasettikuorma" value="yes">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Kasettikuorma&nbsp;&nbsp;&nbsp;<input type="submit" value="Tallenna">
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    Maksimipaino:
+                                </td>
+                                <td>
+                                    <input name="max_weight" value="${kasettikuorma.max_weight}"> t<br><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;0 km</td>
+                                <td><input name="base_cost" value="${kasettikuorma.base_cost}"> € (Pohjahinta)</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+                                <td><input name="range1_cost" value="${kasettikuorma.range1_cost}"> € / km</td>
+                            </tr>
+                            <tr>
+                                <td><input name="range1_end" value="${kasettikuorma.range1_end}"> km</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+                                <td><input name="range2_cost" value="${kasettikuorma.range2_cost}"> € / km</td>
+                            </tr>
+                            <tr>
+                                <td><input name="range2_end" value="${kasettikuorma.range2_end}"> km</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | </td>
+                                <td><input name="range3_cost" value="${kasettikuorma.range3_cost}"> € / km</td>
                             </tr>
                         </table>
                     </div>

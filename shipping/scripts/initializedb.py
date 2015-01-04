@@ -44,5 +44,10 @@ def main(argv=sys.argv):
     with transaction.manager:
 
         if not len(DBSession.query(ShippingCostIrtotavara).all()):
-            DBSession.add(ShippingCostIrtotavara(range1_cost=3, range2_cost=2, range3_cost=1,
+            DBSession.add(ShippingCostIrtotavara(name="nuppikuorma", max_weight=18, base_cost=58,
+                                                 range1_cost=3, range2_cost=2, range3_cost=1,
+                                                 range1_end=10, range2_end=20))
+
+            DBSession.add(ShippingCostIrtotavara(name="kasettikuorma", max_weight=38, base_cost=128,
+                                                 range1_cost=3, range2_cost=2, range3_cost=1,
                                                  range1_end=10, range2_end=20))

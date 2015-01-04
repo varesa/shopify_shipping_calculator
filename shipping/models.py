@@ -42,8 +42,8 @@ class QuoteRequest(Base):
 
 
 product_location_assoc_table = Table('association', Base.metadata,
-                                     Column('product_id', Integer, ForeignKey('products.uuid')),
-                                     Column('location_id', Integer, ForeignKey('shipping_locations.uuid'))
+                                     Column('product_id', Integer, ForeignKey('products.id')),
+                                     Column('location_id', Integer, ForeignKey('shipping_locations.id'))
                                     )
 
 
@@ -73,6 +73,11 @@ class Product(Base):
 class ShippingCostIrtotavara(Base):
     __tablename__ = 'cost_irtotavara'
     id = Column(Integer, primary_key=True)
+
+    name = Column(Text)
+
+    base_cost = Column(Float)
+    max_weight = Column(Float)
 
     # range1_begin = 0
     range1_cost = Column(Float)
