@@ -37,7 +37,7 @@ def view_setup_addservice(request):
 
     c = CarrierService()
     c.name = "Test"
-    c.callback_url = "http://finbit.dy.fi:6545/callback"
+    c.callback_url = "http://shipping.finbit.dy.fi/callback"
     c.format = "json"
     c.service_discovery = True
     c.save()
