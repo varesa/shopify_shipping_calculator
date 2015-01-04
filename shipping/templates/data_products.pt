@@ -27,6 +27,14 @@
             </div>
 
             <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Tallenna .CSV</h3>
+
+                    Nykyiset tuotteet: <a href="/export/products.csv">Tallenna</a>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     Tuotteet
                 </div>
