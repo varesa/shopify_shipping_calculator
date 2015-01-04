@@ -2,14 +2,26 @@
 <html xmlns="http://www.w3.org/1999/html"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal">
-    <head>
-        <title><metal:slot metal:define-slot="title"></metal:slot></title>
-        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
-        <script type="text/javascript" src="/static/js/bootstrap.js"></script>
-        <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
-        <metal:slot metal:define-slot="custom_head"></metal:slot>
-    </head>
-    <body>
-        <metal:slot metal:define-slot="content"></metal:slot>
-    </body>
+<head>
+    <title><metal:slot metal:define-slot="title"></metal:slot></title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+    <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <metal:slot metal:define-slot="custom_head"></metal:slot>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Alku</a></li>
+                <li><a href="/data/locations">Lastauspaikat</a></li>
+                <li><a href="/data/products">Tuotteet</a></li>
+                <li><a>Hinnat</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<metal:slot metal:define-slot="content"></metal:slot>
+</body>
 </html>
