@@ -35,7 +35,7 @@ class QuoteRequest(Base):
     callback by shopify for later inspection and testing
     """
     __tablename__ = 'requests'
-    uuid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     json = Column(Text) # Stores json-formated request body from shopify
@@ -49,7 +49,7 @@ product_location_assoc_table = Table('association', Base.metadata,
 
 class ShippingLocation(Base):
     __tablename__ = 'shipping_locations'
-    uuid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
 
     name = Column(Text)
     address = Column(Text)
@@ -57,7 +57,7 @@ class ShippingLocation(Base):
 
 class Product(Base):
     __tablename__ = 'products'
-    uuid = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
 
     handle = Column(Text)
     type = Column(Text)
