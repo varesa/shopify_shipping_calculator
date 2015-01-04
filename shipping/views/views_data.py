@@ -103,3 +103,10 @@ def view_data_products(request):
     products = DBSession.query(Product).all()
 
     return {'products': products}
+
+@view_config(route_name='export_locations')
+def view_export_locations(request):
+    contents = ""
+    for location in DBSession.query(ShippingLocation).all():
+        contents += location.name + ';' + location.address + '\n'
+    return Response(contents)
