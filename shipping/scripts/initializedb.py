@@ -20,6 +20,7 @@ from pyramid.scripts.common import parse_vars
 from ..models import (
     DBSession,
     Base,
+    ShippingCostIrtotavara
     )
 
 
@@ -41,6 +42,7 @@ def main(argv=sys.argv):
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
     with transaction.manager:
-        pass
-        #model = MyModel(name='one', value=1)
-        #DBSession.add(model)
+
+        if not len(DBSession.query(ShippingCostIrtotavara).all()):
+            DBSession.add(ShippingCostIrtotavara(range1_cost=3, range2_cost=2, range3_cost=1,
+                                                 range1_end=10, range2_end=20))

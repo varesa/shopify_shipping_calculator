@@ -11,7 +11,7 @@ from pyramid.response import Response
 from shipping.models import DBSession, ShippingLocation
 
 
-@view_config(route_name='data_locations', renderer='../templates/data_locations.pt')
+@view_config(route_name='data_locations', renderer='../../templates/data_locations.pt')
 def view_data_locations(request):
     """
     View method for listing data associated with different loading locations

@@ -8,7 +8,7 @@
 from pyramid.view import view_config
 
 
-@view_config(route_name='data', renderer='../templates/data.pt')
+@view_config(route_name='data', renderer='../../templates/data.pt')
 def view_data(request):
     """
     View method for listing different data-types used by the application

@@ -11,7 +11,7 @@ from pyramid.response import Response
 from shipping.models import DBSession, ShippingLocation, Product
 
 
-@view_config(route_name='data_products', renderer='../templates/data_products.pt')
+@view_config(route_name='data_products', renderer='../../templates/data_products.pt')
 def view_data_products(request):
     """
     View method for listing data associated with different products

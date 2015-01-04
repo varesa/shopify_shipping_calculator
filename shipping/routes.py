@@ -28,6 +28,7 @@ def configure_routes(config):
     config.add_route('data', '/data')
     config.add_route('data_locations', '/data/locations')
     config.add_route('data_products', '/data/products')
+    config.add_route('data_costs', '/data/costs')
     config.add_route('export_locations', '/export/locations.csv')
     config.add_route('export_products', '/export/products.csv')
 

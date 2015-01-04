@@ -68,3 +68,20 @@ class Product(Base):
     locations = relationship('ShippingLocation',
                              secondary=product_location_assoc_table,
                              backref='products')
+
+
+class ShippingCostIrtotavara(Base):
+    __tablename__ = 'cost_irtotavara'
+    id = Column(Integer, primary_key=True)
+
+    # range1_begin = 0
+    range1_cost = Column(Float)
+    range1_end = Column(Float)
+
+    # range2_begin = range1_end
+    range2_cost = Column(Float)
+    range2_end = Column(Float)
+
+    # range3_begin = range2_end
+    range3_cost = Column(Float)
+    # range3_end = unlimited

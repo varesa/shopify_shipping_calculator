@@ -1,0 +1,60 @@
+<!--!
+    Project: Shopify shipping calculator
+    Copyright 2014 - 2015 Esa Varemo <esa@kuivanto.fi>
+    Unauthorized use or copying of this file is prohibited
+-->
+
+<metal:main metal:use-macro="load: master.pt">
+    <metal:slot metal:fill-slot="custom_head">
+        <style type="text/css">
+            input {
+                width: 64px;
+            }
+
+            table {
+                width: 368px !important;
+            }
+        </style>
+    </metal:slot>
+    <metal:slot metal:fill-slot="content">
+        <div class="container">
+            <h2>Toimitushinnat</h2>
+
+            <form method="POST">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Irtokuormat&nbsp;&nbsp;&nbsp;<input type="submit" value="Tallenna">
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;0 km</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+                                <td> <input name="range1_cost" value="${costs.range1_cost}"> € / km</td>
+                            </tr>
+                            <tr>
+                                <td><input name="range1_end" value="${costs.range1_end}"> km</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| </td>
+                                <td><input name="range2_cost" value="${costs.range2_cost}"> € / km</td>
+                            </tr>
+                            <tr>
+                                <td><input name="range2_end" value="${costs.range2_end}"> km</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | </td>
+                                <td><input name="range3_cost" value="${costs.range3_cost}"> € / km</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </metal:slot>
+</metal:main>

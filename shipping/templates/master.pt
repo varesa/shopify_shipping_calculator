@@ -23,7 +23,7 @@
                 <li><a href="/">Alku</a></li>
                 <li><a href="/data/locations">Lastauspaikat</a></li>
                 <li><a href="/data/products">Tuotteet</a></li>
-                <li><a>Hinnat</a></li>
+                <li><a href="/data/costs">Hinnat</a></li>
             </ul>
         </div>
     </div>
