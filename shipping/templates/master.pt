@@ -1,3 +1,9 @@
+<!--
+    Project: Shopify shipping calculator
+    Copyright 2014 - 2015 Esa Varemo <esa@kuivanto.fi>
+    Unauthorized use or copying of this file is prohibited
+-->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html"
       xmlns:tal="http://xml.zope.org/namespaces/tal"

@@ -1,3 +1,9 @@
+<!--!
+    Project: Shopify shipping calculator
+    Copyright 2014 - 2015 Esa Varemo <esa@kuivanto.fi>
+    Unauthorized use or copying of this file is prohibited
+-->
+
 <metal:main metal:use-macro="load: master.pt">
     <metal:main metal:fill-slot="title">Toimituslaskuri</metal:main>
 
