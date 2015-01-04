@@ -65,7 +65,7 @@ def view_export_products(request):
     contents = ""
     for product in DBSession.query(Product).all():
         contents += product.handle + ';' + product.type + ';' + product.subtype + ';' + str(product.maara_per_kpl) + \
-            ((';' + str(location.name()) for location in product.locations)
+            ((';' + str(location.name())) for location in product.locations)
 #            ';'.join(product.locations) + '\n'
 
     resp = Response()
