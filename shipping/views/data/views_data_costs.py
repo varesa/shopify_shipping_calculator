@@ -27,11 +27,16 @@ def string_to_float_or_zero(string):
 @view_config(route_name='data_costs', renderer='../../templates/data_costs.pt')
 def view_data_costs(request):
     if len(request.POST):
-        if len(DBSession.query(ShippingCostIrtotavara).all()):
-            costs = DBSession.query(ShippingCostIrtotavara).first()
+
+        if 'nuppikuorma' in request.POST.keys():
+            costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first()
+        elif 'kasettikuorma' in request.POST.keys():
+            costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
         else:
-            costs = ShippingCostIrtotavara()
-            DBSession.add(costs)
+            raise Exception("Invalid form data")
+
+        costs.max_weight = string_to_float_or_zero(request.POST['max_weight'])
+        costs.base_cost = string_to_float_or_zero(request.POST['base_cost'])
 
         costs.range1_cost = string_to_float_or_zero(request.POST['range1_cost'])
         costs.range1_end  = string_to_float_or_zero(request.POST['range1_end'])
