@@ -10,8 +10,8 @@
             <h2>Requests from shopify:</h2>
             <br><br>
             <table class="table table-hover">
-                <tr tal:repeat="request requests" onclick="document.location.href='/requests/${request.uuid}'">
-                    <td>${request.uuid}&nbsp;&nbsp;&nbsp;<br><br></td>
+                <tr tal:repeat="request requests" onclick="document.location.href='/requests/${request.id}'">
+                    <td>${request.id}&nbsp;&nbsp;&nbsp;<br><br></td>
                     <td>${request.date}&nbsp;&nbsp;&nbsp;<br><br></td>
                     <td>${request.json}&nbsp;&nbsp;&nbsp;<br><br></td>
                 </tr>

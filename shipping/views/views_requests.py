@@ -38,7 +38,7 @@ def view_request_details(request):
     :return: Dictionary of values to be used in the template
     """
     id = request.matchdict['id']
-    req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
+    req = DBSession.query(QuoteRequest).filter_by(id=id).first()
     req.json = prettify_json(req.json)
     return {'request': req}
 
@@ -52,7 +52,7 @@ def view_request_test(request):
     :return: Dictionary of values to be used in the template
     """
     id = request.matchdict['id']
-    req = DBSession.query(QuoteRequest).filter_by(uuid=id).first()
+    req = DBSession.query(QuoteRequest).filter_by(id=id).first()
 
     fakereq = DummyRequest()
     fakereq.body = req.json.encode('utf-8')
