@@ -8,6 +8,8 @@
 from pyramid.view import view_config
 from pyramid.response import Response
 
+from sqlalchemy.orm.session import make_transient
+
 from shipping.models import DBSession, ShippingLocation, Product
 
 
@@ -25,6 +27,8 @@ def view_data_products(request):
 
         products = []
 
+        DBSession.query(Product).delete()
+
         for line in products_csv:
             try:
                 line = line.decode('utf-8')
@@ -33,8 +37,9 @@ def view_data_products(request):
                     line = line.decode('ISO-8859-1')
                 except:
                     return Response('<html><body>Invalid encoding</body></html>')
-
             parts = line.split(';')
+            if len(parts) < 5:
+                 continue
             handle = parts[0].strip()
             type = parts[1].strip()
             subtype = parts[2].strip()
@@ -44,16 +49,10 @@ def view_data_products(request):
                 location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
                 if location:
                     locations.append(location)
-
-            products.append((handle, type, subtype, maara_per_kpl, locations))
-
-        if len(products) > 0:
-            # We have somewhat valid data
-            DBSession.query(Product).delete()
-
-        for product in products:
-            DBSession.add(Product(handle=product[0], type=product[1], subtype=product[2],
-                                  maara_per_kpl=product[3], locations=product[4]))
+            print(locations)
+            DBSession.add(Product(handle=handle, type=type, subtype=subtype, maara_per_kpl=maara_per_kpl, locations=locations))
+            if handle == "testi-Test2":
+                pass # assert False
 
     products = DBSession.query(Product).all()
 
