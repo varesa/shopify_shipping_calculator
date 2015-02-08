@@ -26,8 +26,8 @@ def view_data_products(request):
         products_csv = request.POST['file_products'].file.readlines()
 
         products = []
-
-        DBSession.query(Product).delete()
+        for product in DBSession.query(Product).all():
+            DBSession.delete(product)
 
         for line in products_csv:
             try:
@@ -49,11 +49,7 @@ def view_data_products(request):
                 location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
                 if location:
                     locations.append(location)
-            print(locations)
             DBSession.add(Product(handle=handle, type=type, subtype=subtype, maara_per_kpl=maara_per_kpl, locations=locations))
-            if handle == "testi-Test2":
-                pass # assert False
-
     products = DBSession.query(Product).all()
 
     return {'products': products}
