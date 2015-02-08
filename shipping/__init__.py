@@ -17,6 +17,12 @@ from .models import (
 
 from .config_manager import initialize_configs
 
+def pdb_wrapper(app):
+    def pdb_app(environ, start_response):
+        #import pdb; pdb.set_trace()
+        print(environ['PATH_INFO'])
+        return app(environ, start_response)
+    return pdb_app
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -25,7 +31,7 @@ def main(global_config, **settings):
     # Check config files, stops application if invalid
     initialize_configs()
 
-    engine = engine_from_config(settings, 'sqlalchemy.')
+    engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=3600)
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
     config = Configurator(settings=settings)
@@ -36,4 +42,4 @@ def main(global_config, **settings):
 
     config.scan()
 
-    return config.make_wsgi_app()
+    return pdb_wrapper(config.make_wsgi_app())
