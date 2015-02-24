@@ -113,12 +113,3 @@ class CategoryIrtotavara():
 
             total += cost
         return total
-
-"""irtokuormat.append({'location': closest['location'], 'distance': closest['distance'], 'amount': item['quantity']})"""
-
-"""
-
-    for irtokuorma in irtokuormat:
-        print(str(irtokuorma['distance']) + " km * " + str(irtokuorma['amount']) + " tn = " +
-              str(irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])))
-        total_price += irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])"""

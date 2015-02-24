@@ -7,7 +7,7 @@
 
 from pyramid.view import view_config
 
-from shipping.models import DBSession, ShippingCostIrtotavara
+from shipping.models import DBSession, ShippingCostIrtotavara, ShippingCostLavatuote
 
 
 def string_to_float_or_zero(string):
@@ -27,24 +27,28 @@ def string_to_float_or_zero(string):
 @view_config(route_name='data_costs', renderer='../../templates/data_costs.pt')
 def view_data_costs(request):
     if len(request.POST):
-
-        if 'nuppikuorma' in request.POST.keys():
-            costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first()
-        elif 'kasettikuorma' in request.POST.keys():
-            costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
+        if 'lavatuote' in request.POST.keys():
+            cost = DBSession.query(ShippingCostLavatuote).first()
+            cost.cost_lavametri = string_to_float_or_zero(request.POST['lavametri_cost'])
         else:
-            raise Exception("Invalid form data")
+            if 'nuppikuorma' in request.POST.keys():
+                costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first()
+            elif 'kasettikuorma' in request.POST.keys():
+                costs = DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
+            else:
+                raise Exception("Invalid form data")
 
-        costs.max_weight = string_to_float_or_zero(request.POST['max_weight'])
-        costs.base_cost = string_to_float_or_zero(request.POST['base_cost'])
+            costs.max_weight = string_to_float_or_zero(request.POST['max_weight'])
+            costs.base_cost = string_to_float_or_zero(request.POST['base_cost'])
 
-        costs.range1_cost = string_to_float_or_zero(request.POST['range1_cost'])
-        costs.range1_end  = string_to_float_or_zero(request.POST['range1_end'])
-        costs.range2_cost = string_to_float_or_zero(request.POST['range2_cost'])
-        costs.range2_end  = string_to_float_or_zero(request.POST['range2_end'])
-        costs.range3_cost = string_to_float_or_zero(request.POST['range3_cost'])
+            costs.range1_cost = string_to_float_or_zero(request.POST['range1_cost'])
+            costs.range1_end  = string_to_float_or_zero(request.POST['range1_end'])
+            costs.range2_cost = string_to_float_or_zero(request.POST['range2_cost'])
+            costs.range2_end  = string_to_float_or_zero(request.POST['range2_end'])
+            costs.range3_cost = string_to_float_or_zero(request.POST['range3_cost'])
 
     return {
         'nuppikuorma': DBSession.query(ShippingCostIrtotavara).filter_by(name="nuppikuorma").first(),
-        'kasettikuorma': DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first()
+        'kasettikuorma': DBSession.query(ShippingCostIrtotavara).filter_by(name="kasettikuorma").first(),
+        'lavatuote': DBSession.query(ShippingCostLavatuote).first()
     }

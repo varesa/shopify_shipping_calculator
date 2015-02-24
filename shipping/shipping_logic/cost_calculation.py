@@ -13,7 +13,7 @@ from ..api_auth import create_session
 
 from .logic_sakit import CategorySakit
 from .logic_irtotavara import CategoryIrtotavara
-from .logic_muut import CategoryMuut
+from .logic_lavatuotteet import CategoryLavatuotteet
 
 from ..models import DBSession
 from ..models import Product as db_Product
@@ -34,7 +34,7 @@ def calculate_shipping(requestjson):
 
     sakit = CategorySakit(destination)
     irtotavara = CategoryIrtotavara(destination)
-    muut = CategoryMuut(destination)
+    lavatuotteet = CategoryLavatuotteet(destination)
 
     for item in items:
         handle = sf_Product.find(item['product_id']).handle
@@ -44,8 +44,8 @@ def calculate_shipping(requestjson):
             sakit.add_item(product, item['quantity'])
         elif product.type == 'irtokuorma':
             irtotavara.add_item(product, item['quantity'])
-        else:
-            muut.add_item(product, item['quantity'])
+        elif product.type == 'lavatuote':
+            lavatuotteet.add_item(product, item['quantity'])
 
     total_price = 0
 
@@ -55,7 +55,7 @@ def calculate_shipping(requestjson):
     if irtotavara.has_items():
         total_price += irtotavara.get_total()
 
-    if muut.has_items():
-        total_price += muut.get_total()
+    if lavatuotteet.has_items():
+        total_price += lavatuotteet.get_total()
 
     return total_price * 100  # 1€ -> 100 cents
