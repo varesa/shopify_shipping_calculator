@@ -9,6 +9,7 @@ import json
 from math import ceil
 
 from shopify import Product as sf_Product
+from shopify import Variant as sf_Variant
 from ..api_auth import create_session
 
 from .logic_sakit import CategorySakit
@@ -37,7 +38,12 @@ def calculate_shipping(requestjson):
     lavatuotteet = CategoryLavatuotteet(destination)
 
     for item in items:
-        handle = sf_Product.find(item['product_id']).handle
+       	sf_product = sf_Product.find(item['product_id'])
+        sf_variant = sf_Variant.find(item['variant_id']) 
+
+        print(sf_variant.__dict__)
+
+        handle = sf_product.handle + "-" + sf_variant.title
         product = DBSession.query(db_Product).filter_by(handle=handle).first()
 
         if product.type == 'sakki':
