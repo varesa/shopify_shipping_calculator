@@ -65,6 +65,8 @@ class Product(Base):
 
     maara_per_lavametri = Column(Float)
 
+    km_raja = Column(Float)
+
     locations = relationship('ShippingLocation',
                              secondary=product_location_assoc_table,
                              backref='products')
