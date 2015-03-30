@@ -38,7 +38,7 @@ def view_data_products(request):
                 except:
                     return Response('<html><body>Invalid encoding</body></html>')
             parts = line.split(';')
-            if len(parts) < 6:
+            if len(parts) < 5:
                  continue
             handle = parts[0].strip()
             type = parts[1].strip()
@@ -50,10 +50,11 @@ def view_data_products(request):
                  continue
             
             locations = []
-            for field in parts[5:]:
-                location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
-                if location:
-                    locations.append(location)
+            if len(parts) > 5:
+                 for field in parts[5:]:
+                     location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
+                     if location:
+                          locations.append(location)
             DBSession.add(Product(handle=handle, type=type, subtype=subtype, maara_per_lavametri=maara_per_lavametri, km_raja=km_raja, locations=locations))
     products = DBSession.query(Product).all()
 
@@ -64,7 +65,7 @@ def view_data_products(request):
 def view_export_products(request):
     contents = ""
     for product in DBSession.query(Product).all():
-        contents += product.handle + ';' + product.type + ';' + product.subtype + ';' + str(product.maara_per_kpl)
+        contents += product.handle + ';' + product.type + ';' + product.subtype + ';' + str(product.maara_per_lavametri) + ';' + str(product.km_raja)
         for location in product.locations:
             contents += ';' + str(location.name)
         contents += '\n'
