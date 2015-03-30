@@ -104,12 +104,12 @@ class CategoryIrtotavara():
                 cost = HINTA_KUORIKATE_KIINTEA
             else:
                 distance = find_closest(item.locations, self.destination)['distance']
+                print("dist: " + str(distance))
                 if item.maara_per_kpl * quantity < NUPPI_MAX_PAINO:
                     cost = self.laske_nuppi(distance)
                 else:
                     while quantity > 0:
                         cost = self.laske_kasetti(distance)
                         quantity -= KASETTI_MAX_PAINO / item.maara_per_kpl
-
             total += cost
         return total
