@@ -7,3 +7,7 @@
 
 class InvalidLocationException(Exception):
     pass
+
+
+class TooFarAwayException(Exception):
+    pass

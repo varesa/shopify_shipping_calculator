@@ -7,6 +7,7 @@
 
 from ..distance_helpers import find_closest
 from ..models import DBSession, ShippingCostIrtotavara
+from ..exceptions import TooFarAwayException
 
 
 HINTA_KUORIKATE_KIINTEA = 50
@@ -105,6 +106,8 @@ class CategoryIrtotavara():
             else:
                 distance = find_closest(item.locations, self.destination)['distance']
                 print("dist: " + str(distance))
+                if distance > item.km_raja:
+                    raise TooFarAwayException()
                 if item.maara_per_kpl * quantity < NUPPI_MAX_PAINO:
                     cost = self.laske_nuppi(distance)
                 else:

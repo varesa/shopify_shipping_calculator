@@ -6,6 +6,7 @@
 
 from ..models import DBSession, ShippingCostLavatuote
 from ..distance_helpers import find_closest
+from ..exceptions import TooFarAwayException
 from math import ceil
 
 
@@ -33,6 +34,10 @@ class CategoryLavatuotteet:
 
         for item, quantity in self.items:
             distance = find_closest(item.locations, self.destination)['distance']
+            if distance > item.km_raja:
+                raise TooFarAwayException()
             units = ceil(quantity / item.maara_per_lavametri)
 
             total += units * distance * cost_lavametri_km
+
+        return total

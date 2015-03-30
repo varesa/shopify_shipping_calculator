@@ -6,6 +6,7 @@
 
 
 from ..distance_helpers import find_closest
+from ..exceptions import TooFarAwayException
 
 
 class CategorySakit:
@@ -30,6 +31,8 @@ class CategorySakit:
         bag_locations = []
         for item, quantity in items:
             closest = find_closest(item.locations, self.destination)
+            if closest['distance'] > item.km_raja:
+                raise TooFarAwayException()
 
             found = False
             for bag_location in bag_locations:
