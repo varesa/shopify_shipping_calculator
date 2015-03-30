@@ -43,13 +43,13 @@ def view_data_products(request):
             handle = parts[0].strip()
             type = parts[1].strip()
             subtype = parts[2].strip()
-            maara_per_kpl = parts[3].strip()
+            maara_per_lavametri = parts[3].strip()
             locations = []
             for field in parts[4:]:
                 location = DBSession.query(ShippingLocation).filter_by(name=field.strip()).first()
                 if location:
                     locations.append(location)
-            DBSession.add(Product(handle=handle, type=type, subtype=subtype, maara_per_kpl=maara_per_kpl, locations=locations))
+            DBSession.add(Product(handle=handle, type=type, subtype=subtype, maara_per_lavametri=maara_per_lavametri, locations=locations))
     products = DBSession.query(Product).all()
 
     return {'products': products}
