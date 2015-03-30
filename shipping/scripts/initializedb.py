@@ -20,7 +20,8 @@ from pyramid.scripts.common import parse_vars
 from ..models import (
     DBSession,
     Base,
-    ShippingCostIrtotavara
+    ShippingCostIrtotavara,
+    ShippingCostLavatuote
     )
 
 
@@ -51,3 +52,6 @@ def main(argv=sys.argv):
             DBSession.add(ShippingCostIrtotavara(name="kasettikuorma", max_weight=38, base_cost=128,
                                                  range1_cost=3, range2_cost=2, range3_cost=1,
                                                  range1_end=10, range2_end=20))
+
+        if not len(DBSession.query(ShippingCostLavatuote).all()):
+            DBSession.add(ShippingCostLavatuote(cost_lavametri=1.23))

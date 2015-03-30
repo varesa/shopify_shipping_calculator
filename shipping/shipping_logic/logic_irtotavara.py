@@ -112,14 +112,4 @@ class CategoryIrtotavara():
                         cost = self.laske_kasetti(distance)
                         quantity -= KASETTI_MAX_PAINO / item.maara_per_kpl
             total += cost
-            print("cost: " + str(cost))
         return total
-
-"""irtokuormat.append({'location': closest['location'], 'distance': closest['distance'], 'amount': item['quantity']})"""
-
-"""
-
-    for irtokuorma in irtokuormat:
-        print(str(irtokuorma['distance']) + " km * " + str(irtokuorma['amount']) + " tn = " +
-              str(irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])))
-        total_price += irtokuorma_hinta(irtokuorma['distance'], irtokuorma['amount'])"""

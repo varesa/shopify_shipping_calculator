@@ -4,8 +4,12 @@
 # Unauthorized use or copying of this file is prohibited
 #
 
+from ..models import DBSession, ShippingCostLavatuote
+from ..distance_helpers import find_closest
+from math import ceil
 
-class CategoryMuut:
+
+class CategoryLavatuotteet:
 
     destination = None
     ":type: str"
@@ -14,7 +18,6 @@ class CategoryMuut:
 
     def __init__(self, destination):
         self.items = []
-
         self.destination = destination
 
     def add_item(self, item, quantity):
@@ -24,4 +27,12 @@ class CategoryMuut:
         return len(self.items) > 0
 
     def get_total(self):
-        pass
+        total = 0
+
+        cost_lavametri_km = DBSession.query(ShippingCostLavatuote).first().cost_lavametri
+
+        for item, quantity in self.items:
+            distance = find_closest(item.locations, self.destination)['distance']
+            units = ceil(quantity / item.maara_per_lavametri)
+
+            total += units * distance * cost_lavametri_km

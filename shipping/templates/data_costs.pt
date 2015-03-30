@@ -22,6 +22,15 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    Säkit
+                </div>
+                <div class="panel-body">
+                    Kiinteä hinta 0€
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     Kuorikate
                 </div>
                 <div class="panel-body">
@@ -115,6 +124,18 @@
                                 <td><input name="range3_cost" value="${kasettikuorma.range3_cost}"> € / km</td>
                             </tr>
                         </table>
+                    </div>
+                </div>
+            </form>
+
+            <form method="POST">
+                <input type="hidden" name="lavatuote" value="yes">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Lavatuote&nbsp;&nbsp;&nbsp;<input type="submit" value="Tallenna">
+                    </div>
+                    <div class="panel-body">
+                        <input type="number" step="0.01" name="lavametri_cost" value="${lavatuote.cost_lavametri}"> €/lavametri/km
                     </div>
                 </div>
             </form>

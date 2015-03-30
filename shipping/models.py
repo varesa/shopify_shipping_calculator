@@ -63,7 +63,7 @@ class Product(Base):
     type = Column(Text)
     subtype = Column(Text)
 
-    maara_per_kpl = Column(Float)
+    maara_per_lavametri = Column(Float)
 
     locations = relationship('ShippingLocation',
                              secondary=product_location_assoc_table,
@@ -90,3 +90,10 @@ class ShippingCostIrtotavara(Base):
     # range3_begin = range2_end
     range3_cost = Column(Float)
     # range3_end = unlimited
+
+
+class ShippingCostLavatuote(Base):
+    __tablename__ = 'cost_lavatuote'
+    id = Column(Integer, primary_key=True)
+
+    cost_lavametri = Column(Float)
